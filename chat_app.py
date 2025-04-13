@@ -2,7 +2,6 @@ import torch
 import torch.nn.functional as F
 from tokenizer import Tokenizer, ChatFormat
 from llama import Llama, device
-# from og_llama import tmodel, device
 torch.set_default_dtype(torch.bfloat16)
 path = '/home/jaimeet/.llama/checkpoints/Llama3.2-1B-Instruct'
 
@@ -30,7 +29,6 @@ while True:
     assistant_header = chat.encode_header({"role": "assistant", "content": ""})
     assistant_header_tok = torch.tensor([assistant_header], device=device)
     input_tok = torch.cat((input_tok, assistant_header_tok), dim=1)
-    # import pdb; pdb.set_trace()
     print("Assistant: ", end="")
     with torch.no_grad():
         while True:
